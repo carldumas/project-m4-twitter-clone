@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { FiHome, FiUser, FiBell, FiBookmark } from 'react-icons/fi';
 // Constants
 import { COLORS } from '../constants';
 // Components
@@ -14,16 +15,38 @@ function Sidebar() {
             <nav>
                 <NavBar>
                     <ListItem>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink exact to="/">
+                            <ListIcons>
+                                <FiHome />
+                            </ListIcons>
+                            Home
+                        </NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/:profileId">Profile</NavLink>
+                        <NavLink to="/:profileId">
+                            <ListIcons>
+                                <FiUser />
+                            </ListIcons>
+                            Profile
+                        </NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/notifications">Notifications</NavLink>
+                        <NavLink to="/notifications">
+                            {' '}
+                            <ListIcons>
+                                <FiBell />
+                            </ListIcons>
+                            Notifications
+                        </NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/bookmarks">Bookmarks</NavLink>
+                        <NavLink to="/bookmarks">
+                            {' '}
+                            <ListIcons>
+                                <FiBookmark />
+                            </ListIcons>{' '}
+                            Bookmarks
+                        </NavLink>
                     </ListItem>
                 </NavBar>
             </nav>
@@ -32,7 +55,7 @@ function Sidebar() {
 }
 
 const Wrapper = styled.header`
-    width: 150px;
+    width: 170px;
     margin-left: 10vw;
     padding-top: 20px;
 `;
@@ -43,9 +66,8 @@ const NavBar = styled.ul`
 
 const ListItem = styled.li`
     line-height: 1.5px;
-    padding-top: 20px;
-    padding-left: 20px;
-    width: 130px;
+    padding: 10px;
+    width: 150px;
     height: 20px;
     font-weight: bold;
 
@@ -60,6 +82,10 @@ const ListItem = styled.li`
     & .active {
         color: ${COLORS.primary};
     }
+`;
+
+const ListIcons = styled.span`
+    padding-right: 20px;
 `;
 
 export default Sidebar;
