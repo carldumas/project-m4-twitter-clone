@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 import { FiHome, FiUser, FiBell, FiBookmark } from 'react-icons/fi';
 // Constants
 import { COLORS } from '../constants';
-// Components
-import Logo from './Logo';
+// Assets
+import logo from '../assets/logo.svg';
 
 function Sidebar() {
     return (
         <Wrapper>
-            <Logo />
+            <img src={logo} alt="Logo" />
             <nav>
                 <NavBar>
                     <ListItem>
