@@ -23,7 +23,8 @@ function Sidebar() {
                         </NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/:profileId">
+                        {/* remove hardcoded data */}
+                        <NavLink to="/treasurymog">
                             <ListIcons>
                                 <FiUser />
                             </ListIcons>

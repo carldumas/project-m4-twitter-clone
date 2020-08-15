@@ -7,7 +7,7 @@ import { COLORS } from '../constants.js';
 const Bookmarks = () => {
     return (
         <Wrapper>
-            <div>Bookmarks</div>
+            <h1>Bookmarks</h1>
         </Wrapper>
     );
 };

@@ -7,7 +7,7 @@ import { COLORS } from '../constants.js';
 const Notifications = () => {
     return (
         <Wrapper>
-            <div>Notifications</div>
+            <h1>Notifications</h1>
         </Wrapper>
     );
 };

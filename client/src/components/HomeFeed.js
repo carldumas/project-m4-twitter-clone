@@ -7,7 +7,7 @@ import { COLORS } from '../constants.js';
 const HomeFeed = () => {
     return (
         <Wrapper>
-            <div>Home Feed</div>
+            <h1>Home Feed</h1>
         </Wrapper>
     );
 };
