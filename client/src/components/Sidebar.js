@@ -24,7 +24,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem>
                         {/* remove hardcoded data */}
-                        <NavLink to="/treasurymog">
+                        <NavLink exact to="/treasurymog">
                             <ListIcons>
                                 <FiUser />
                             </ListIcons>
@@ -32,7 +32,7 @@ function Sidebar() {
                         </NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/notifications">
+                        <NavLink exact to="/notifications">
                             {' '}
                             <ListIcons>
                                 <FiBell />
@@ -41,7 +41,7 @@ function Sidebar() {
                         </NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/bookmarks">
+                        <NavLink exact to="/bookmarks">
                             {' '}
                             <ListIcons>
                                 <FiBookmark />

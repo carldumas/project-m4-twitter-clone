@@ -10,7 +10,7 @@ export const CurrentUserProvider = ({ children }) => {
     // Wrap fetch in useEffect
     React.useEffect(() => {
         // Fetch the user data from the API (/me/profile + enabled cors extension)
-        fetch('http://localhost:31415/api/me/profile')
+        fetch('http://localhost:31415/api/me/profile', { method: 'GET' })
             .then((response) => response.json())
             .then((data) => {
                 // When the data is received, update currentUser
