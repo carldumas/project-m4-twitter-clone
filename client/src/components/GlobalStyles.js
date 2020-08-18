@@ -58,4 +58,8 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  h1 {
+    font-size: 28px;
+  }
 `;

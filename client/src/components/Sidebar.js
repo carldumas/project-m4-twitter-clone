@@ -33,7 +33,6 @@ function Sidebar() {
                     </ListItem>
                     <ListItem>
                         <NavLink exact to="/notifications">
-                            {' '}
                             <ListIcons>
                                 <FiBell />
                             </ListIcons>
@@ -42,10 +41,9 @@ function Sidebar() {
                     </ListItem>
                     <ListItem>
                         <NavLink exact to="/bookmarks">
-                            {' '}
                             <ListIcons>
                                 <FiBookmark />
-                            </ListIcons>{' '}
+                            </ListIcons>
                             Bookmarks
                         </NavLink>
                     </ListItem>

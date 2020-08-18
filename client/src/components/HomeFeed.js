@@ -26,6 +26,7 @@ const HomeFeed = () => {
         <Loading>{status}</Loading>
     ) : (
         <Wrapper>
+            <h1>Home</h1>
             <ul>
                 {currentTweets.tweetIds.map((tweetId) => {
                     const findTweet = currentTweets.tweetsById[tweetId];
@@ -38,6 +39,8 @@ const HomeFeed = () => {
 
 const Wrapper = styled.div`
     display: flex;
+    flex-direction: column;
+    width: 100vw;
 `;
 
 const Loading = styled.div`

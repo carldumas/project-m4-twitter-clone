@@ -47,17 +47,18 @@ const Tweet = ({ tweet }) => {
 const TweetItem = styled.li`
     display: flex;
     padding: 20px;
-    width: 700px;
-`;
-
-const TweetHeader = styled.span`
-    display: flex;
+    width: 800px;
 `;
 
 const Avatar = styled.img`
     height: 60px;
     border-radius: 50%;
     margin-right: 20px;
+`;
+
+const TweetHeader = styled.span`
+    display: flex;
+    line-height: 1.5;
 `;
 
 const MediaImage = styled.img`
