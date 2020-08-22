@@ -10,8 +10,14 @@ import Notifications from './Notifications';
 import Bookmarks from './Bookmarks';
 import TweetDetails from './TweetDetails';
 import Profile from './Profile';
+import { CurrentUserContext } from './CurrentUserContext';
 
 const App = () => {
+    const { currentUser, status } = React.useContext(CurrentUserContext);
+    if (!currentUser) {
+        return status;
+    }
+
     return (
         <>
             <Router>

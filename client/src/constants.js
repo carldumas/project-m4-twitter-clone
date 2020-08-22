@@ -1,4 +1,4 @@
 export const COLORS = {
-    primary: '#800080',
+    primary: 'hsl(258deg, 100%, 50%)',
     color: 'black',
 };

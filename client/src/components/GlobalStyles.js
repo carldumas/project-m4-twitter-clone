@@ -5,8 +5,8 @@ export default createGlobalStyle`
   html, body, div,
   input, button, select, option,
   h1, h2, h3, h4, h5, h6, p,
-  text {
-    font-family: sans-serif;
+  text, textarea {
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   html, body {
@@ -60,6 +60,7 @@ export default createGlobalStyle`
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 26px;
+    padding: 10px 20px 10px;
   }
 `;

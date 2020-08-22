@@ -20,6 +20,7 @@ const Tweet = ({ tweet }) => {
 
     return (
         <>
+            <UserTweetSection></UserTweetSection>
             <TweetItem>
                 <div>
                     <Avatar
@@ -43,6 +44,8 @@ const Tweet = ({ tweet }) => {
         </>
     );
 };
+
+const UserTweetSection = styled.div``;
 
 const TweetItem = styled.li`
     display: flex;

@@ -7,8 +7,11 @@ import { FiHome, FiUser, FiBell, FiBookmark } from 'react-icons/fi';
 import { COLORS } from '../constants';
 // Assets
 import logo from '../assets/logo.svg';
+// Components
+import { CurrentUserContext } from './CurrentUserContext';
 
 function Sidebar() {
+    const { currentUser } = React.useContext(CurrentUserContext);
     return (
         <Wrapper>
             <img src={logo} alt="Logo" />
@@ -23,8 +26,7 @@ function Sidebar() {
                         </NavLink>
                     </ListItem>
                     <ListItem>
-                        {/* remove hardcoded data */}
-                        <NavLink exact to="/treasurymog">
+                        <NavLink exact to={'/' + currentUser.profile.handle}>
                             <ListIcons>
                                 <FiUser />
                             </ListIcons>
@@ -49,6 +51,7 @@ function Sidebar() {
                     </ListItem>
                 </NavBar>
             </nav>
+            <MeowButton>Meow</MeowButton>
         </Wrapper>
     );
 }
@@ -79,12 +82,23 @@ const ListItem = styled.li`
         border-radius: 20px;
     }
     & .active {
-        color: ${COLORS.primary};
+        color: purple;
     }
 `;
 
 const ListIcons = styled.span`
     padding-right: 20px;
+`;
+
+const MeowButton = styled.button`
+    width: 150px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: ${COLORS.primary};
+    color: white;
+    margin-top: 10px;
+    outline: none;
+    cursor: pointer;
 `;
 
 export default Sidebar;
