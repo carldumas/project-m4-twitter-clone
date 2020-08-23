@@ -57,21 +57,22 @@ function Sidebar() {
 }
 
 const Wrapper = styled.header`
-    width: 170px;
+    width: 200px;
     margin-left: 10vw;
     padding-top: 20px;
 `;
 
 const NavBar = styled.ul`
     margin-top: 20px;
+    padding-right: 10px;
 `;
 
 const ListItem = styled.li`
-    line-height: 1.5px;
     padding: 10px;
     width: 150px;
-    height: 20px;
+    height: 22px;
     font-weight: bold;
+    font-size: 18px;
 
     & a {
         color: black;
@@ -81,6 +82,7 @@ const ListItem = styled.li`
         background-color: #e9d5e9;
         border-radius: 20px;
     }
+
     & .active {
         color: purple;
     }
@@ -93,10 +95,12 @@ const ListIcons = styled.span`
 const MeowButton = styled.button`
     width: 150px;
     height: 35px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: none;
     border-radius: 30px;
     background-color: ${COLORS.primary};
     color: white;
-    margin-top: 10px;
     outline: none;
     cursor: pointer;
 `;

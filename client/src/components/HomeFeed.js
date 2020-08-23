@@ -4,6 +4,7 @@ import styled from 'styled-components';
 // Components
 import Tweet from './Tweet';
 import { CurrentUserContext } from './CurrentUserContext';
+import UserTweetInput from './UserTweetInput';
 
 const HomeFeed = () => {
     const [currentTweets, setCurrentTweets] = React.useState(null);
@@ -23,6 +24,7 @@ const HomeFeed = () => {
                 console.log(error);
             });
     }, []);
+
     return !currentTweets ? (
         <Loading>{status}</Loading>
     ) : (
@@ -35,12 +37,10 @@ const HomeFeed = () => {
                         alt={currentUser.profile.handle + '-avatar'}
                     />
                 )}
-                <UserInputField
-                    type="text"
-                    name="user-tweets"
-                    placeholder="What's happening?"
-                />
+                <UserTweetInput />
             </UserFeedsArea>
+            <div id="userTextContent"></div>
+
             <ul>
                 {currentTweets.tweetIds.map((tweetId) => {
                     const findTweet = currentTweets.tweetsById[tweetId];
@@ -73,22 +73,13 @@ const Avatar = styled.img`
     margin-right: 20px;
 `;
 
-const UserInputField = styled.textarea`
-    width: 100vw;
-    padding: 20px;
-    text-align: top;
-    font-size: 26px;
-    border: none;
-    outline: none;
-    resize: none;
-`;
-
 const Loading = styled.div`
     margin-top: 20px;
     width: 100px;
     height: 20px;
     text-align: center;
     background-color: lightgray;
+    padding: 5px;
 `;
 
 export default HomeFeed;

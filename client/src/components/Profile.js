@@ -107,8 +107,9 @@ const GreyText = styled.span`
 const Loading = styled.div`
     margin-top: 20px;
     width: 100px;
+    height: 20px;
     text-align: center;
     background-color: lightgray;
+    padding: 5px;
 `;
-
 export default Profile;

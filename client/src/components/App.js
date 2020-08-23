@@ -15,7 +15,7 @@ import { CurrentUserContext } from './CurrentUserContext';
 const App = () => {
     const { currentUser, status } = React.useContext(CurrentUserContext);
     if (!currentUser) {
-        return status;
+        return <Loading>{status}</Loading>;
     }
 
     return (
@@ -50,6 +50,15 @@ const App = () => {
 const Wrapper = styled.div`
     height: 100vh;
     display: flex;
+`;
+
+const Loading = styled.div`
+    margin-top: 20px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    background-color: lightgray;
+    padding: 5px;
 `;
 
 export default App;
