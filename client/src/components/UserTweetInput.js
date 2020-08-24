@@ -17,7 +17,6 @@ class UserTweetInput extends React.Component {
     handleOnSubmit = (e) => {
         e.preventDefault();
         const userTypedInText = document.getElementById('userInputText').value;
-        const charLimit = 280;
         if (this.state.content.length <= this.state.charLimit) {
             document.getElementById(
                 'userTextContent'
@@ -25,10 +24,11 @@ class UserTweetInput extends React.Component {
         } else {
             alert(
                 'Please remove ' +
-                    (userTypedInText.length - charLimit) +
+                    (userTypedInText.length - this.state.charLimit) +
                     ' characters'
             );
         }
+        this.setState({ content: '' });
     };
 
     render() {
@@ -77,6 +77,7 @@ const MeowButton = styled.input`
     height: 40px;
     width: 80px;
     font-size: 18px;
+    border: none;
     border-radius: 20px;
     text-align: center;
     outline: none;
