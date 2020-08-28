@@ -3,12 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FiHome, FiUser, FiBell, FiBookmark } from 'react-icons/fi';
+// Components
+import { CurrentUserContext } from './CurrentUserContext';
 // Constants
 import { COLORS } from '../constants';
 // Assets
 import logo from '../assets/logo.svg';
-// Components
-import { CurrentUserContext } from './CurrentUserContext';
 
 function Sidebar() {
     const { currentUser } = React.useContext(CurrentUserContext);

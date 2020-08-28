@@ -1,10 +1,8 @@
 // Libraries
 import React from 'react';
+import moment from 'moment';
 import styled from 'styled-components';
 import { FiMapPin, FiCalendar } from 'react-icons/fi';
-import moment from 'moment';
-// Constants
-import { COLORS } from '../constants.js';
 // Components
 import { CurrentUserContext } from './CurrentUserContext';
 

@@ -5,17 +5,17 @@ export const CurrentUserContext = React.createContext(null);
 
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = React.useState(null);
-    const [status, setStatus] = React.useState('loading');
+    const [status, setStatus] = React.useState('Loading');
 
     // Wrap fetch in useEffect
     React.useEffect(() => {
         // Fetch the user data from the API (/me/profile + enabled cors extension)
         fetch('http://localhost:31415/api/me/profile', { method: 'GET' })
-            .then((response) => response.json())
+            .then((res) => res.json())
             .then((data) => {
                 // When the data is received, update currentUser
                 setCurrentUser(data);
-                // Also, set `status` to `idle`
+                // set `status` to `idle`
                 setStatus('idle');
             })
 

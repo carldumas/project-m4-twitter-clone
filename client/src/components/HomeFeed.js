@@ -3,27 +3,35 @@ import React from 'react';
 import styled from 'styled-components';
 // Components
 import Tweet from './Tweet';
+import UserTweets from './UserTweets';
 import { CurrentUserContext } from './CurrentUserContext';
-import UserTweetInput from './UserTweetInput';
 
 const HomeFeed = () => {
-    const [currentTweets, setCurrentTweets] = React.useState(null);
-    const [status, setStatus] = React.useState('loading');
     const { currentUser } = React.useContext(CurrentUserContext);
+    const [currentTweets, setCurrentTweets] = React.useState(null);
+    const [status, setStatus] = React.useState('Loading');
 
-    React.useEffect(() => {
+    const sendTweets = () => {
+        fetchTweets();
+    };
+
+    const fetchTweets = () => {
         fetch('http://localhost:31415/api/me/home-feed', { method: 'GET' })
-            .then((response) => response.json())
+            .then((res) => res.json())
             .then((data) => {
-                // When the data is received, update currentUser
+                // When the data is received, update currentTweets
                 setCurrentTweets(data);
-                // Also, set `status` to `idle`
+                // set `status` to `idle`
                 setStatus('idle');
             })
             .catch((error) => {
-                console.log(error);
+                console.error('Error:', error);
+                alert(`We're sorry but we're unable to process your request.`);
+                window.location.reload(true);
             });
-    }, []);
+    };
+
+    React.useEffect(fetchTweets, []);
 
     return !currentTweets ? (
         <Loading>{status}</Loading>
@@ -31,20 +39,23 @@ const HomeFeed = () => {
         <Wrapper>
             <h1>Home</h1>
             <UserFeedsArea>
-                {currentUser && (
-                    <Avatar
-                        src={currentUser.profile.avatarSrc}
-                        alt={currentUser.profile.handle + '-avatar'}
-                    />
-                )}
-                <UserTweetInput />
+                <Avatar
+                    src={currentUser.profile.avatarSrc}
+                    alt={currentUser.profile.handle + '-avatar'}
+                />
+                <UserTweets sendTweets={sendTweets} />
             </UserFeedsArea>
-            <div id="userTextContent"></div>
-
             <ul>
+                {' '}
                 {currentTweets.tweetIds.map((tweetId) => {
-                    const findTweet = currentTweets.tweetsById[tweetId];
-                    return <Tweet key={findTweet.id} tweet={findTweet} />;
+                    const foundTweet = currentTweets.tweetsById[tweetId];
+                    return (
+                        <Tweet
+                            key={tweetId}
+                            tweet={foundTweet}
+                            aria-label="View Tweet"
+                        />
+                    );
                 })}
             </ul>
         </Wrapper>
@@ -56,7 +67,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     border-left: solid 1px lightgray;
     border-right: solid 1px lightgray;
-    width: 800px;
+    width: 760px;
 `;
 
 const UserFeedsArea = styled.div`
@@ -64,7 +75,7 @@ const UserFeedsArea = styled.div`
     height: 200px;
     border-top: solid 1px lightgray;
     border-bottom: solid 10px lightgray;
-    padding: 10px;
+    padding: 20px;
 `;
 
 const Avatar = styled.img`

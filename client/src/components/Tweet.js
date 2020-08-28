@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react';
-import styled from 'styled-components';
 import moment from 'moment';
+import styled from 'styled-components';
 // Components
 import TweetActions from './TweetActions';
 
@@ -20,7 +20,6 @@ const Tweet = ({ tweet }) => {
 
     return (
         <>
-            <UserTweetSection></UserTweetSection>
             <TweetItem>
                 <div>
                     <Avatar
@@ -45,12 +44,10 @@ const Tweet = ({ tweet }) => {
     );
 };
 
-const UserTweetSection = styled.div``;
-
 const TweetItem = styled.li`
     display: flex;
     padding: 20px;
-    width: 800px;
+    width: 720px;
 `;
 
 const Avatar = styled.img`
@@ -66,7 +63,7 @@ const TweetHeader = styled.span`
 
 const MediaImage = styled.img`
     height: 400px;
-    width: 650px;
+    width: 640px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 20px;
