@@ -36,7 +36,9 @@ const Tweet = ({ tweet }) => {
                         </span>
                     </TweetHeader>
                     <div>{tweet.status}</div>
-                    <MediaImage src={mediaTweet.url} alt="image" />
+                    {mediaTweet.url && (
+                        <MediaImage src={mediaTweet.url} alt="image" />
+                    )}
                     <TweetActions />
                 </div>
             </TweetItem>
