@@ -11,7 +11,13 @@ export const CurrentUserProvider = ({ children }) => {
     React.useEffect(() => {
         // Fetch the user data from the API (/me/profile + enabled cors extension)
         fetch('http://localhost:31415/api/me/profile', { method: 'GET' })
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    window.location.href = '/error';
+                }
+            })
             .then((data) => {
                 // When the data is received, update currentUser
                 setCurrentUser(data);

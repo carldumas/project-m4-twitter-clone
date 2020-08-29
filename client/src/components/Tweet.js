@@ -48,6 +48,7 @@ const TweetItem = styled.li`
     display: flex;
     padding: 20px;
     width: 720px;
+    border-bottom: solid 1px lightgray;
 `;
 
 const Avatar = styled.img`

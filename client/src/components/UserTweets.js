@@ -22,7 +22,13 @@ const UserTweets = () => {
             },
             body: JSON.stringify({ status: currentTweet }),
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    window.location.href = '/error';
+                }
+            })
 
             .catch((error) => {
                 console.error('Error:', error);

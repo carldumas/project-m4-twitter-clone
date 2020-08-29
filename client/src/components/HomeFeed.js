@@ -17,7 +17,13 @@ const HomeFeed = () => {
 
     const fetchTweets = () => {
         fetch('http://localhost:31415/api/me/home-feed', { method: 'GET' })
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    window.location.href = '/error';
+                }
+            })
             .then((data) => {
                 // When the data is received, update currentTweets
                 setCurrentTweets(data);
@@ -26,8 +32,7 @@ const HomeFeed = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
-                alert(`We're sorry but we're unable to process your request.`);
-                window.location.reload(true);
+                window.location.href = '/error';
             });
     };
 
@@ -53,7 +58,7 @@ const HomeFeed = () => {
                         <Tweet
                             key={tweetId}
                             tweet={foundTweet}
-                            aria-label="View Tweet"
+                            aria-label="view tweet"
                         />
                     );
                 })}

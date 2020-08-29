@@ -10,10 +10,12 @@ import Notifications from './Notifications';
 import Bookmarks from './Bookmarks';
 import TweetDetails from './TweetDetails';
 import Profile from './Profile';
+import Error from './Error';
 import { CurrentUserContext } from './CurrentUserContext';
 
 const App = () => {
     const { currentUser, status } = React.useContext(CurrentUserContext);
+
     if (!currentUser) {
         return <Loading>{status}</Loading>;
     }
@@ -36,6 +38,9 @@ const App = () => {
                         </Route>
                         <Route exact path="/tweet/:tweetId">
                             <TweetDetails />
+                        </Route>
+                        <Route path="/error">
+                            <Error />
                         </Route>
                         <Route exact path="/:profileId">
                             <Profile />
