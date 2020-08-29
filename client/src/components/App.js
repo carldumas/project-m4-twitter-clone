@@ -11,13 +11,20 @@ import Bookmarks from './Bookmarks';
 import TweetDetails from './TweetDetails';
 import Profile from './Profile';
 import Error from './Error';
+import Loader from './Loader';
 import { CurrentUserContext } from './CurrentUserContext';
 
 const App = () => {
-    const { currentUser, status } = React.useContext(CurrentUserContext);
+    const { currentUser } = React.useContext(CurrentUserContext);
 
     if (!currentUser) {
-        return <Loading>{status}</Loading>;
+        return (
+            <Wrapper>
+                <LoaderDiv>
+                    <Loader />
+                </LoaderDiv>
+            </Wrapper>
+        );
     }
 
     return (
@@ -57,13 +64,10 @@ const Wrapper = styled.div`
     display: flex;
 `;
 
-const Loading = styled.div`
-    margin-top: 20px;
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    background-color: lightgray;
-    padding: 5px;
+const LoaderDiv = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 40%;
 `;
 
 export default App;

@@ -35,9 +35,7 @@ const UserTweets = () => {
             });
     };
 
-    return !currentUser ? (
-        <Loading>{status}</Loading>
-    ) : (
+    return (
         <>
             <form onSubmit={handleSubmitTweet}>
                 <TweetInputBox

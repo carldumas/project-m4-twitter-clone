@@ -4,6 +4,7 @@ import styled from 'styled-components';
 // Components
 import Tweet from './Tweet';
 import UserTweets from './UserTweets';
+import Loader from './Loader';
 import { CurrentUserContext } from './CurrentUserContext';
 
 const HomeFeed = () => {
@@ -39,7 +40,11 @@ const HomeFeed = () => {
     React.useEffect(fetchTweets, []);
 
     return !currentTweets ? (
-        <Loading>{status}</Loading>
+        <Wrapper>
+            <LoaderDiv>
+                <Loader />
+            </LoaderDiv>
+        </Wrapper>
     ) : (
         <Wrapper>
             <h1>Home</h1>
@@ -89,13 +94,10 @@ const Avatar = styled.img`
     margin-right: 20px;
 `;
 
-const Loading = styled.div`
-    margin-top: 20px;
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    background-color: lightgray;
-    padding: 5px;
+const LoaderDiv = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 40%;
 `;
 
 export default HomeFeed;
