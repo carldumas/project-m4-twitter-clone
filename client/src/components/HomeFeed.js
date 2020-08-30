@@ -17,7 +17,7 @@ const HomeFeed = () => {
     };
 
     const fetchTweets = () => {
-        fetch('http://localhost:31415/api/me/home-feed', { method: 'GET' })
+        fetch('/api/me/home-feed', { method: 'GET' })
             .then((res) => {
                 if (res.ok) {
                     return res.json();

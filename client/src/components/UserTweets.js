@@ -4,7 +4,7 @@ import { CurrentUserContext } from './CurrentUserContext';
 // Components
 import styled from 'styled-components';
 
-const UserTweets = () => {
+const UserTweets = (props) => {
     const [currentTweet, setCurrentTweet] = useState('');
     const [status] = React.useState('Loading');
     const { currentUser } = useContext(CurrentUserContext);
@@ -14,8 +14,10 @@ const UserTweets = () => {
         setCurrentTweet(e.target.value);
     };
 
-    const handleSubmitTweet = () => {
-        fetch(`http://localhost:31415/api/tweet`, {
+    const handleSubmitTweet = (e) => {
+        e.preventDefault();
+
+        fetch(`/api/tweet`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,6 +30,11 @@ const UserTweets = () => {
                 } else {
                     window.location.href = '/error';
                 }
+            })
+            .then((data) => {
+                props.sendTweets();
+                // can't believe how much time I spent on this one to clear the form :-)
+                setCurrentTweet('');
             })
 
             .catch((error) => {
@@ -112,15 +119,6 @@ const MeowButton = styled.button`
         color: white;
         cursor: not-allowed;
     }
-`;
-
-const Loading = styled.div`
-    margin-top: 20px;
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    background-color: lightgray;
-    padding: 5px;
 `;
 
 export default UserTweets;

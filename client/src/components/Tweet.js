@@ -30,12 +30,18 @@ const Tweet = ({ tweet }) => {
                 <div>
                     <TweetHeader>
                         <h3>{tweet.author.displayName}</h3>
-                        <span>
+                        <span
+                            style={{
+                                fontSize: '14px',
+                                color: '#585858',
+                                padding: '2px',
+                            }}
+                        >
                             &nbsp;@{tweet.author.handle}&nbsp;•&nbsp;
                             {moment(tweet.timestamp).format('MMM Do')}
                         </span>
                     </TweetHeader>
-                    <div>{tweet.status}</div>
+                    <div style={{ marginTop: '10px' }}>{tweet.status}</div>
                     {mediaTweet.url && (
                         <MediaImage src={mediaTweet.url} alt="image" />
                     )}
