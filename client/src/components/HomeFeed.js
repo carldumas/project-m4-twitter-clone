@@ -6,10 +6,12 @@ import Tweet from './Tweet';
 import UserTweets from './UserTweets';
 import Loader from './Loader';
 import { CurrentUserContext } from './CurrentUserContext';
+import Error from './Error';
 
 const HomeFeed = () => {
     const { currentUser } = React.useContext(CurrentUserContext);
     const [currentTweets, setCurrentTweets] = React.useState(null);
+    const [error, setError] = React.useState(null);
     const [status, setStatus] = React.useState('Loading');
 
     const sendTweets = () => {
@@ -22,7 +24,9 @@ const HomeFeed = () => {
                 if (res.ok) {
                     return res.json();
                 } else {
-                    window.location.href = '/error';
+                    throw new Error(
+                        'Unable to complete fetch GET tweets request.'
+                    );
                 }
             })
             .then((data) => {
@@ -32,12 +36,15 @@ const HomeFeed = () => {
                 setStatus('idle');
             })
             .catch((error) => {
-                console.error('Error:', error);
-                window.location.href = '/error';
+                setError(error);
             });
     };
 
     React.useEffect(fetchTweets, []);
+
+    if (error) {
+        return <Error />;
+    }
 
     return !currentTweets ? (
         <Wrapper>

@@ -3,11 +3,13 @@ import React, { useState, useContext } from 'react';
 import { CurrentUserContext } from './CurrentUserContext';
 // Components
 import styled from 'styled-components';
+import Error from './Error';
 
 const UserTweets = (props) => {
     const [currentTweet, setCurrentTweet] = useState('');
     const [status] = React.useState('Loading');
     const { currentUser } = useContext(CurrentUserContext);
+    const [error, setError] = React.useState(null);
     const maxChar = 280;
 
     const handleOnChange = (e) => {
@@ -28,7 +30,9 @@ const UserTweets = (props) => {
                 if (res.ok) {
                     return res.json();
                 } else {
-                    window.location.href = '/error';
+                    throw new Error(
+                        'Unable to complete fetch POST tweets request.'
+                    );
                 }
             })
             .then((data) => {
@@ -38,9 +42,13 @@ const UserTweets = (props) => {
             })
 
             .catch((error) => {
-                console.error('Error:', error);
+                setError(error);
             });
     };
+
+    if (error) {
+        return <Error />;
+    }
 
     return (
         <>
