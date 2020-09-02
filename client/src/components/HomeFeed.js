@@ -3,10 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 // Components
 import Tweet from './Tweet';
-import UserTweets from './UserTweets';
-import Loader from './Loader';
-import { CurrentUserContext } from './CurrentUserContext';
 import Error from './Error';
+import Loader from './Loader';
+import UserTweets from './UserTweets';
+import { CurrentUserContext } from './CurrentUserContext';
 
 const HomeFeed = () => {
     const { currentUser } = React.useContext(CurrentUserContext);
@@ -70,7 +70,7 @@ const HomeFeed = () => {
                         <Tweet
                             key={tweetId}
                             tweet={foundTweet}
-                            aria-label="view tweet"
+                            aria-label="View tweet"
                         />
                     );
                 })}

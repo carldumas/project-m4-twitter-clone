@@ -4,12 +4,48 @@ import moment from 'moment';
 import styled from 'styled-components';
 import { FiMapPin, FiCalendar } from 'react-icons/fi';
 // Components
+import Tweet from './Tweet';
+import Error from './Error';
+import Loader from './Loader';
 import { CurrentUserContext } from './CurrentUserContext';
 
 const Profile = () => {
     const { currentUser } = React.useContext(CurrentUserContext);
+    const [currentUserTweets, setCurrentUserTweets] = React.useState(null);
+    const [error, setError] = React.useState(null);
+    const [status, setStatus] = React.useState('Loading');
 
-    return (
+    const fetchCurrentUserTweets = () => {
+        fetch(`/api/${currentUser.profile.handle}/feed`, { method: 'GET' })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error(
+                        'Unable to complete fetch GET current user tweets request.'
+                    );
+                }
+            })
+            .then((data) => {
+                // When the data is received, update currentUserTweets
+                setCurrentUserTweets(data);
+                // set `status` to `idle`
+                setStatus('idle');
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    };
+
+    React.useEffect(fetchCurrentUserTweets, []);
+
+    return !currentUserTweets ? (
+        <Wrapper>
+            <LoaderDiv>
+                <Loader />
+            </LoaderDiv>
+        </Wrapper>
+    ) : (
         <>
             <Wrapper>
                 <ProfileArea>
@@ -52,9 +88,31 @@ const Profile = () => {
                                 )}
                             </GreyText>
                         </div>
-                        2 <GreyText>Following</GreyText>2{' '}
+                        {currentUser.profile.numFollowing}{' '}
+                        <GreyText>Following</GreyText>
+                        {currentUser.profile.numFollowers}{' '}
                         <GreyText>Followers</GreyText>
                     </ProfileData>
+                    <TabContainer>
+                        <Tab>Tweets</Tab>
+                        <Tab>Media</Tab>
+                        <Tab>Likes</Tab>
+                    </TabContainer>
+
+                    <ul>
+                        {' '}
+                        {currentUserTweets.tweetIds.map((tweetId) => {
+                            const foundTweet =
+                                currentUserTweets.tweetsById[tweetId];
+                            return (
+                                <Tweet
+                                    key={tweetId}
+                                    tweet={foundTweet}
+                                    aria-label="View tweet"
+                                />
+                            );
+                        })}
+                    </ul>
                 </ProfileArea>
             </Wrapper>
         </>
@@ -94,6 +152,25 @@ const ProfileData = styled.div`
 const GreyText = styled.span`
     color: grey;
     padding-right: 20px;
+`;
+
+const LoaderDiv = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 40%;
+`;
+
+const TabContainer = styled.div`
+    display: inline-flex;
+    width: 760px;
+    margin-top: 40px;
+    border-bottom: solid 1px lightgray;
+`;
+
+const Tab = styled.div`
+    width: 253px;
+    text-align: center;
+    padding-bottom: 20px;
 `;
 
 export default Profile;

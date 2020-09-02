@@ -2,6 +2,7 @@
 import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
+import { FiRepeat } from 'react-icons/fi';
 // Components
 import TweetActions from './TweetActions';
 
@@ -18,38 +19,91 @@ const Tweet = ({ tweet }) => {
         return result;
     }, {});
 
-    return (
-        <>
-            <TweetItem>
-                <div>
-                    <Avatar
-                        src={tweet.author.avatarSrc}
-                        alt={tweet.author.handle + '-avatar'}
-                    />
-                </div>
-                <div>
-                    <TweetHeader>
-                        <h3>{tweet.author.displayName}</h3>
-                        <span
+    if (tweet.retweetFrom) {
+        return (
+            <>
+                <TweetItem>
+                    <div>
+                        <div
+                            style={{
+                                textAlign: 'right',
+                                width: '60px',
+                                paddingBottom: '5px',
+                            }}
+                        >
+                            <FiRepeat />
+                        </div>
+                        <Avatar
+                            src={tweet.author.avatarSrc}
+                            alt={tweet.author.handle + '-avatar'}
+                        />
+                    </div>
+                    <div>
+                        <div
                             style={{
                                 fontSize: '14px',
                                 color: '#585858',
-                                padding: '2px',
+                                paddingBottom: '10px',
                             }}
                         >
-                            &nbsp;@{tweet.author.handle}&nbsp;•&nbsp;
-                            {moment(tweet.timestamp).format('MMM Do')}
-                        </span>
-                    </TweetHeader>
-                    <div style={{ marginTop: '10px' }}>{tweet.status}</div>
-                    {mediaTweet.url && (
-                        <MediaImage src={mediaTweet.url} alt="image" />
-                    )}
-                    <TweetActions />
-                </div>
-            </TweetItem>
-        </>
-    );
+                            {tweet.retweetFrom.displayName} Remeowed
+                        </div>
+                        <TweetHeader>
+                            <h3>{tweet.author.displayName}</h3>
+                            <span
+                                style={{
+                                    fontSize: '14px',
+                                    color: '#585858',
+                                    padding: '2px',
+                                }}
+                            >
+                                &nbsp;@{tweet.author.handle}&nbsp;•&nbsp;
+                                {moment(tweet.timestamp).format('MMM Do')}
+                            </span>
+                        </TweetHeader>
+                        <div style={{ marginTop: '10px' }}>{tweet.status}</div>
+                        {mediaTweet.url && (
+                            <MediaImage src={mediaTweet.url} alt="image" />
+                        )}
+                        <TweetActions />
+                    </div>
+                </TweetItem>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <TweetItem>
+                    <div>
+                        <Avatar
+                            src={tweet.author.avatarSrc}
+                            alt={tweet.author.handle + '-avatar'}
+                        />
+                    </div>
+                    <div>
+                        <TweetHeader>
+                            <h3>{tweet.author.displayName}</h3>
+                            <span
+                                style={{
+                                    fontSize: '14px',
+                                    color: '#585858',
+                                    padding: '2px',
+                                }}
+                            >
+                                &nbsp;@{tweet.author.handle}&nbsp;•&nbsp;
+                                {moment(tweet.timestamp).format('MMM Do')}
+                            </span>
+                        </TweetHeader>
+                        <div style={{ marginTop: '10px' }}>{tweet.status}</div>
+                        {mediaTweet.url && (
+                            <MediaImage src={mediaTweet.url} alt="image" />
+                        )}
+                        <TweetActions />
+                    </div>
+                </TweetItem>
+            </>
+        );
+    }
 };
 
 const TweetItem = styled.li`

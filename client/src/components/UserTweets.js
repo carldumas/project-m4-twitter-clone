@@ -1,9 +1,9 @@
 // Libraries
 import React, { useState, useContext } from 'react';
-import { CurrentUserContext } from './CurrentUserContext';
-// Components
 import styled from 'styled-components';
+// Components
 import Error from './Error';
+import { CurrentUserContext } from './CurrentUserContext';
 
 const UserTweets = (props) => {
     const [currentTweet, setCurrentTweet] = useState('');
